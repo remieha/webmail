@@ -1,9 +1,7 @@
 package fr.remie.webmail.controller;
 
+import java.io.IOException;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.remie.webmail.model.User;
 import fr.remie.webmail.service.UsersService;
@@ -48,5 +46,19 @@ public class UsersRestContoller {
 	public void deleteUser(@PathVariable Integer id) {
 		usersService.delete(usersService.getUser(id));
 	}
+	
+//	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+//	public User uploadPhoto(MultipartFile file){
+//		try {
+//			byte[] bytes = file.getBytes();
+//			User user = new User();
+//			user.setPhoto(bytes);
+//		    return user;
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		//return "redirect:/app/avenger/";
+//		return null;
+//	}
 
 }

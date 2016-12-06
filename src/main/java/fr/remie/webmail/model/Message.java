@@ -37,9 +37,9 @@ public class Message {
 	@JsonBackReference
 	private User sender;
 
-	@ManyToMany
-	@JsonManagedReference
-	private Set<User> users; //receivers
+//	@ManyToMany
+//	@JsonManagedReference
+//	private Set<User> users; //receivers
 
 	public Integer getId() {
 		return id;
@@ -89,13 +89,13 @@ public class Message {
 		this.sender = sender;
 	}
 
-	public Set<User> getUsers() { // Recievers
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
+//	public Set<User> getUsers() { // Recipients
+//		return users;
+//	}
+//
+//	public void setUsers(Set<User> users) {
+//		this.users = users;
+//	}
 
 	public String getFile1Base64() {
 		return Base64.encodeBase64String(file1);

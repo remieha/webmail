@@ -6,24 +6,24 @@
 
 		<div class="form-group">
 			<label for="inputLName" class="sr-only">Last Name</label>
-				<input type="text" id="inputLName" name="inputLName" class="form-control" placeholder="Last Name" required autofocus ng-model="u.lastName">
+				<input type="text" id="inputLName" name="lastName" class="form-control" placeholder="Last Name" required autofocus ng-model="user.lastName">
 		</div>
 		<div class="form-group">
 			<label for="inputFName" class="sr-only">First Name</label>
-				<input type="text" id="inputFName" name="inputFName" class="form-control" placeholder="First Name" required ng-model="u.firstName">
+				<input type="text" id="inputFName" name="firstName" class="form-control" placeholder="First Name" required ng-model="user.firstName">
 		</div>
 		<div class="form-group">
 			<label for="inputRegisterEmail" class="sr-only">Email address</label>
-				<input type="email" id="inputRegisterEmail" name="inputRegisterEmail" class="form-control" placeholder="Email address" required ng-model="u.mail">
+				<input type="email" id="inputRegisterEmail" name="inputRegisterEmail" name="mail" class="form-control" placeholder="Email address" required ng-change="validEmail()" ng-model="user.mail">
 		</div>
 		<div class="form-group">
 			<label for="inputRegisterPassword" class="sr-only">Password</label>
-				<input type="password" id="inputRegisterPassword" name="inputRegisterPassword" class="form-control"	placeholder="Password" required ng-model="u.password">
+				<input type="password" id="inputRegisterPassword" name="password" class="form-control"	placeholder="Password" required ng-model="user.password">
 		</div>
 		<div class="form-group">
 			<label class="btn btn-primary" for="file">
 				<input type="file" style="display: none;" onchange="$('#upload-file-info').html($(this).val());"
-					ng-model="u.photo" ng-click="uploadPhoto()" id="file" name="file">
+					ng-model="user.photo" ng-click="uploadPhoto()" id="file" name="file">
 					Upload Photo
 					<span class='label label-primary' id="upload-file-info"></span>
 			</label>
@@ -37,4 +37,5 @@
 	</div>
 </div>
 <div class="col-md-3"></div>
+
 	

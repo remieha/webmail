@@ -11,50 +11,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="icon" href="icon.ico">
-<style>
-/* .btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0; 
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right; 
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block; 
-} */
-.jumbotron { 
-	background-color: #51C9F6;
-	background-size: cover;
-	height:300px;
-}
-</style>
-
+<link rel = "stylesheet" type = "text/css" href = "css/Style.css" />
+<link rel="icon" href="envelope.ico">
 </head>
 
-<!-- <body ng-app="avgrApp" ng-controller="appCtrl">
+<!-- <body ng-app="avgrApp" ng-controller="appCtrl"> -->
 
+<body ng-app="mailApp">
 	<div class="jumbotron"></div>
-
-	<div class="container" >
+	<div class="container">
 		<div class="row">
-			<div>
-				<nav class="navbar navbar-inverse">
+						<div>
+				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 					    <div class="navbar-header">
-						      <a class="navbar-brand" href="#Home">Avengers Application</a>
+						      <a class="navbar-brand" href="#Home"><span class="glyphicon glyphicon-home"></span> Home</a>
     					</div>
 						<ul class="nav navbar-nav">
-							<li><a href="#Avengers">Avengers</a></li>
-							<li><a href="#Agents">Agents</a></li>
+							<li><a href="#New"><span class="glyphicon glyphicon-plus"></span> New Message</a></li>
+							<li><a href="#Inbox"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
+							<li><a href="#Sent"><span class="glyphicon glyphicon-share-alt"></span> Sent</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -63,24 +39,12 @@
 
 			</div>
 		</div>
-		<span class="pull-right glyphicon glyphicon-star"><i>Merci SuperHugo!</i></span>
-	</div>
-
-	<script src="appCtrl.js"></script>
-	<script src="avgrFunc.js"></script>
- 	<script src="agentFunc.js"></script>	
-
-</body> -->
-<body>
-	<div class="jumbotron"></div>
-	<div class="container">
-		<div class="row">
-			
-		</div>
 	
 	</div>
 
-
+ 	<script src="appCtrl.js"></script>
+<!--	<script src="avgrFunc.js"></script>
+ 	<script src="agentFunc.js"></script>	 -->
 
 </body>
 </html>
