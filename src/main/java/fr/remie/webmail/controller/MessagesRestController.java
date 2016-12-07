@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import fr.remie.webmail.model.Message;
+import fr.remie.webmail.model.User;
 import fr.remie.webmail.service.MessagesService;
+import fr.remie.webmail.service.UsersService;
 
 @RestController
 @RequestMapping("/rest/messages")
@@ -24,6 +26,9 @@ public class MessagesRestController {
 
 	@Autowired
 	private MessagesService messagesService;
+	
+	@Autowired
+	private UsersService usersService;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -38,8 +43,10 @@ public class MessagesRestController {
 		return messagesService.getMessage(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public void createMessage(@RequestBody Message m, @RequestParam Integer senderId) {
+	@RequestMapping(value = "/{senderId}", method = RequestMethod.POST)
+	public void createMessage(@RequestBody Message m, @PathVariable Integer senderId) {
+//		User sender = usersService.getUser(senderId);
+//		m.setSender(sender);
 		messagesService.save(m, senderId);
 	}
 

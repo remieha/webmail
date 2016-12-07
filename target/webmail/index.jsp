@@ -9,20 +9,25 @@
 <title>Welcome to Webmail</title>
 
 <meta charset="ISO-8859-1">
-<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link type="text/css" rel="stylesheet" href="assets/jquery-te-1.4.0.css">
+<script type="text/javascript" src="assets/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/jquery-te-1.4.0.min.js" charset="utf-8"></script>
+<script src="assets/angular.min.js"></script>
+<script src="assets/angular-sanitize.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <link rel="icon" href="icon.ico">
 <link rel = "stylesheet" type = "text/css" href = "css/Style.css" />
 <link rel="icon" href="envelope.ico">
 </head>
 
-<!-- <body ng-app="avgrApp" ng-controller="appCtrl"> -->
-
 <body ng-app="mailApp" ng-controller="appCtrl">
-	<div class="jumbotron"></div>
+	<div class="jumbotron">
+		<h1>WEBMAIL {{u.firstName}}</h1>
+	</div>
 	<div class="container">
 		<div class="row">
 						<div>
@@ -32,9 +37,17 @@
 						      <a class="navbar-brand" href="#Home"><span class="glyphicon glyphicon-home"></span> Home</a>
     					</div>
 						<ul class="nav navbar-nav">
-							<li><a href="#New"><span class="glyphicon glyphicon-plus"></span> New Message</a></li>
+							<li><a href="#New"><span class="glyphicon glyphicon-pencil"></span> New Message</a></li>
 							<li><a href="#Inbox"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
 							<li><a href="#Sent"><span class="glyphicon glyphicon-share-alt"></span> Sent</a></li>
+							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">
+								<span class="glyphicon glyphicon-plus"></span> Other options <span class="glyphicon glyphicon-chevron-down"></span></a>
+        							<ul class="dropdown-menu">
+          								<li><a href="#UsersList">Users List</a></li>
+          								<li><a href="#UserProfile">Your profile</a></li>
+          								<li><a href="#">Option3</a></li>
+        							</ul>
+      						</li>
 						</ul>
 					</div>
 				</nav>
@@ -46,9 +59,10 @@
 	
 	</div>
 
- 	<script src="appCtrl.js"></script>
-	<script src="userFunc.js"></script>
- 	<script src="msgFunc.js"></script>
+ 	<script src="JS/appCtrl.js"></script>
+	<script src="JS/userFunc.js"></script>
+ 	<script src="JS/msgFunc.js"></script>
+ 	<script src="directives/rich-editor.js"></script>
 
 </body>
 </html>

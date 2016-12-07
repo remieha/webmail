@@ -44,7 +44,7 @@
 								<span class="glyphicon glyphicon-plus"></span> Other options <span class="glyphicon glyphicon-chevron-down"></span></a>
         							<ul class="dropdown-menu">
           								<li><a href="#UsersList">Users List</a></li>
-          								<li><a href="#">Option2</a></li>
+          								<li><a href="#UserProfile">Your profile</a></li>
           								<li><a href="#">Option3</a></li>
         							</ul>
       						</li>

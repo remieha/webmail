@@ -8,6 +8,5 @@ fr\remie\webmail\service\UsersService.class
 fr\remie\webmail\dao\impl\MessagesDAOImpl.class
 fr\remie\webmail\dao\MessagesDAO.class
 fr\remie\webmail\dao\UsersDAO.class
-fr\remie\webmail\controller\UsersController.class
 fr\remie\webmail\model\Message.class
 fr\remie\webmail\controller\UsersRestContoller.class

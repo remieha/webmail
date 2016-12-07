@@ -20,7 +20,19 @@ var checkVal = function(s, h){
 	} else {
 		console.log('email is invalid, try another value');
 	}
-}
+};
+
+var	authenticate = function(s, h, r, w, m, p){
+	h.post(urlUser+'login', s.user).then(function(resp){
+		if(resp.data == ""){
+			alert("Error in authentication, try again!");
+		} else {
+			r.user = resp.data;
+			w.location.href = '#Inbox';
+		}
+	});
+};
+
 
 var addPhoto = function(s, h){
 	console.log('upload clicked');

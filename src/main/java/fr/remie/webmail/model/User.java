@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Base64;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,7 +37,7 @@ public class User {
 	private String password;
 
 	@OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<Message> messages;
 	
 	//@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER) // receivers

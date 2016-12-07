@@ -1,5 +1,7 @@
 package fr.remie.webmail.service.impl;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,10 @@ public class MessagesServicesImpl implements MessagesService {
 	}
 
 	public void save(Message message, Integer senderId) {
+		Date date = new Date();
 		User user = usersDao.getById(senderId);
 		message.setSender(user);
+		message.setDate(date);
 		messagesDao.save(message);
 	}
 

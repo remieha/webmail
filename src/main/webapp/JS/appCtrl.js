@@ -22,7 +22,11 @@ app.config(function($routeProvider) {
     })
     .when("/UsersList", {
     	templateUrl : "partials/UsersList.jsp"
+    })
+    .when("/UserProfile", {
+    	templateUrl : "partials/UserProfile.jsp"
     });
+    
 });
 
 app.directive('myCurrentTime', ['$interval', 'dateFilter',
@@ -55,12 +59,18 @@ app.directive('myCurrentTime', ['$interval', 'dateFilter',
 
 var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window) {
 	$scope.user = {};
+	$rootScope.user = {};
 	$scope.msg = {};
 	$scope.date = new Date($.now());
-	$scope.value = "";
+	$rootScope.loggedin = {};
 	
 	initUser($scope, $http);
 	initMsg($scope, $http);
+	
+	// Login
+	$scope.login = function(mail, pass){
+		authenticate($scope, $http, $rootScope, $window, mail, pass);
+	}
 	
 	// Add new user
 	$scope.addUser = function(){
@@ -90,9 +100,9 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 	}
 	
 	// Writing mail
-	$scope.sendMail = function(){
+	$scope.sendMail = function(id){
 		console.log('write here mail sending function');
-		addMail($scope, $http);
+		addMail($scope, $http, 4);
 		$window.location.href = '#Inbox';
 	}
 	$scope.cancelMail = function(){

@@ -37,4 +37,10 @@ public class UsersDAOImpl implements UsersDAO {
 		return list;
 	}
 
+	public User getByMail(String mail) {
+		Integer id = (Integer) entityManager.createNativeQuery("select id from users where mail='"+mail+"'").getSingleResult();// find(User.class, mail);
+		User user = this.getById(id);
+		return user;
+	}
+
 }

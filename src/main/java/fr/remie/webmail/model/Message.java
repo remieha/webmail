@@ -1,5 +1,7 @@
 package fr.remie.webmail.model;
 
+
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -8,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,6 +28,8 @@ public class Message {
 	@Id // cad c'est une clé primaire
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // serial
 	private Integer id;
+	@Column(name = "date")
+	private Date date;
 	@Column(name = "subject")
 	private String subject;
 	@Column(name = "text")
@@ -34,12 +40,12 @@ public class Message {
 	private byte[] file2;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	private User sender;
 
-//	@ManyToMany
-//	@JsonManagedReference
-//	private Set<User> users; //receivers
+	@ManyToMany
+	@JoinTable(name="messages_users", joinColumns=@JoinColumn(name="messages_id",referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="users_id", referencedColumnName="id"))
+	private Set<User> recipients; 
 
 	public Integer getId() {
 		return id;
@@ -47,6 +53,14 @@ public class Message {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getSubject() {
@@ -89,13 +103,13 @@ public class Message {
 		this.sender = sender;
 	}
 
-//	public Set<User> getUsers() { // Recipients
-//		return users;
-//	}
-//
-//	public void setUsers(Set<User> users) {
-//		this.users = users;
-//	}
+	public Set<User> getRecipients() {
+		return recipients;
+	}
+
+	public void setRecipients(Set<User> recipients) {
+		this.recipients = recipients;
+	}
 
 	public String getFile1Base64() {
 		return Base64.encodeBase64String(file1);

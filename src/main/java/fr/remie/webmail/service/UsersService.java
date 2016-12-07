@@ -10,5 +10,5 @@ public interface UsersService {
 	public void save(User user);
 	public void delete(User user);
 	public List<User> findAll();
-	
+	public User login(String mail, String pass);
 }

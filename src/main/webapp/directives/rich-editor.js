@@ -19,8 +19,9 @@ app.directive("richtext", function() {
                 $("#" + attrs.id).jqte({
                     change: function () {
                         scope.$apply(function () {
-                            scope.model = $(".jqte_editor").jqteVal();
+                            scope.model = $("#" + attrs.id).jqteVal();
                             //console.log($("#" + attrs.id).jqteVal());
+                            //console.log(scope.model);
                         });
                         //console.log(scope.model);
                     }
