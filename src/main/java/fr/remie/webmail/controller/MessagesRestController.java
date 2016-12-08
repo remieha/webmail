@@ -1,14 +1,20 @@
 package fr.remie.webmail.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
+import java.util.HashMap;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,17 +43,25 @@ public class MessagesRestController {
 	public List<Message> listMessages() {
 		return messagesService.findAll();
 	}
+	
+	@RequestMapping(value="/{id}/sent", method = RequestMethod.GET)
+	public List<Message> listMessages(@PathVariable Integer id) {
+		return messagesService.sentMessages(id);
+	}
+	
+	@RequestMapping(value="/{id}/inbox", method = RequestMethod.GET)
+	public List<Message> listInMessages(@PathVariable Integer id) {
+		return messagesService.receivedMessages(id);
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Message retrieveMessage(@PathVariable Integer id) {
 		return messagesService.getMessage(id);
 	}
 
-	@RequestMapping(value = "/{senderId}", method = RequestMethod.POST)
-	public void createMessage(@RequestBody Message m, @PathVariable Integer senderId) {
-//		User sender = usersService.getUser(senderId);
-//		m.setSender(sender);
-		messagesService.save(m, senderId);
+	@RequestMapping(value = "/sendMail", method = RequestMethod.POST)
+	public void createMessage(@RequestBody Message m) {
+		messagesService.save(m);
 	}
 
 //	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

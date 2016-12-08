@@ -25,10 +25,14 @@ var checkVal = function(s, h){
 var	authenticate = function(s, h, r, w, m, p){
 	h.post(urlUser+'login', s.user).then(function(resp){
 		if(resp.data == ""){
+			r.isSomeoneIn = false;
 			alert("Error in authentication, try again!");
 		} else {
-			r.user = resp.data;
-			w.location.href = '#Inbox';
+			r.loggedIn = resp.data;
+			r.isSomeoneIn = true;
+			getSent(h, s, r);
+			//console.log(r.loggedIn);
+			w.location.href = '#Sent';
 		}
 	});
 };

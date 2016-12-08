@@ -57,15 +57,37 @@ app.directive('myCurrentTime', ['$interval', 'dateFilter',
     }
 }]);
 
+//Temporary way to add recipients. 
+app.directive('addInput', ['$compile', function ($compile) {
+	return {
+		restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.find('button').bind('click', function () {
+                var input = angular.element('<div><input type="text" ng-model="msg.recipients[' + scope.inputCounter + '].id"></div>');
+                var compile = $compile(input)(scope);
+                element.append(input);
+                scope.inputCounter++;
+            });
+        }
+    }
+}]);
+
 var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window) {
 	$scope.user = {};
-	$rootScope.user = {};
+	$rootScope.loggedIn = {};
 	$scope.msg = {};
 	$scope.date = new Date($.now());
 	$rootScope.loggedin = {};
+	$scope.msg.recipients = [];
+	$scope.inputCounter = 0;
+	$scope.sender = {};
+	$scope.recipients = {};
+	$rootScope.isSomeoneIn = false;
 	
 	initUser($scope, $http);
 	initMsg($scope, $http);
+
+	getSent($http, $scope, $rootScope);
 	
 	// Login
 	$scope.login = function(mail, pass){
@@ -100,9 +122,8 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 	}
 	
 	// Writing mail
-	$scope.sendMail = function(id){
-		console.log('write here mail sending function');
-		addMail($scope, $http, 4);
+	$scope.sendMail = function(senderId, recipients){
+		addMail($scope, $http, $rootScope, senderId, recipients);
 		$window.location.href = '#Inbox';
 	}
 	$scope.cancelMail = function(){

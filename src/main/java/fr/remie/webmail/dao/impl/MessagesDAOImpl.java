@@ -38,4 +38,15 @@ public class MessagesDAOImpl implements MessagesDAO {
 		return list;
 	}
 
+	public List<Message> sentMessages(Integer id) {
+		String query = "select m from Message m where sender_id="+id;
+		List<Message> list = (List<Message>) entityManager.createQuery(query).getResultList();
+		return list;
+	}
+
+	public List<Message> receivedMessages(Integer id) {
+		String query = "select m from Message m where ";
+		return null;
+	}
+
 }

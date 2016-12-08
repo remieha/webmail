@@ -9,4 +9,6 @@ public interface MessagesDAO {
 	public void save(Message message);
 	public void delete(Message message);
 	public List<Message> findAll();
+	public List<Message> receivedMessages(Integer id);
+	public List<Message> sentMessages(Integer id);
 }

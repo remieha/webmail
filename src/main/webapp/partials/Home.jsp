@@ -13,9 +13,13 @@
 				<label for="inputEmail" class="sr-only">Email address</label> 
 					<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus ng-model="user.mail"><!-- <i id="emailValid"></i> -->
 			</div>
+			<div class="form-group">
 			<label for="inputPassword" class="sr-only">Password</label> 
 				<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required ng-model="user.password">
+			</div>
+			<div class="form-group">
 			<button class="btn btn-lg btn-primary btn-block" type="button" name="submitBtn" id="submitBtn" ng-click="login(user.mail, user.password)">Sign	in</button>
+			</div>
 		</form>
 		<h4 class="blue"><a href="#Register">New user : Please register</a></h4>
 

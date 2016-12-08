@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Base64;
@@ -40,10 +41,9 @@ public class Message {
 	private byte[] file2;
 
 	@ManyToOne
-	@JsonManagedReference
 	private User sender;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="messages_users", joinColumns=@JoinColumn(name="messages_id",referencedColumnName="id"), inverseJoinColumns=@JoinColumn(name="users_id", referencedColumnName="id"))
 	private Set<User> recipients; 
 

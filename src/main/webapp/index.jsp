@@ -26,14 +26,22 @@
 
 <body ng-app="mailApp" ng-controller="appCtrl">
 	<div class="jumbotron">
-		<h1>WEBMAIL {{u.firstName}}</h1>
+		<h1>WEBMAIL {{loggedIn.firstName}}</h1>
 	</div>
 	<div class="container">
 		<div class="row">
-						<div>
+<%-- 					    <c:choose>
+    						<c:when test="${loggedIn == null}">
+       							<h1>No one is logged in</h1>
+    						</c:when>
+    						<c:otherwise>
+       							<h1>{{loggedIn.firstName}} is logged in</h1>
+    						</c:otherwise>
+						</c:choose> --%>
+			<div>
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
-					    <div class="navbar-header">
+					    <div class="navbar-header">   	
 						      <a class="navbar-brand" href="#Home"><span class="glyphicon glyphicon-home"></span> Home</a>
     					</div>
 						<ul class="nav navbar-nav">

@@ -1,4 +1,4 @@
-<h3>Your have <span class="badge" ng-bind="messages.length"></span> sent mails :</h3>
+<h3>Your have <span class="badge" ng-bind="sentmessages.length"></span> sent mails :</h3>
 Filter by : <input type="text" ng-model="filterType">
 <table class="table table-hover">
 	<thead>
@@ -12,8 +12,8 @@ Filter by : <input type="text" ng-model="filterType">
 	</thead>
 	<tbody>
 
-		<tr ng-repeat="m in messages | orderBy: clickOrder | filter : filterType">
-			<td><span ng-repeat="r in m.recipients">{{r.mail}},</span></td>
+		<tr ng-repeat="m in sentmessages | orderBy: clickOrder | filter : filterType">
+			<td><span ng-repeat="r in m.recipients">{{r.mail}}<br></span></td>
 			<td>{{m.date | date: "MM/dd/yyyy' at 'HH:mm:ss"}}</td>
 			<td>{{m.subject}}</td>
 			<td>{{m.text}}</td>

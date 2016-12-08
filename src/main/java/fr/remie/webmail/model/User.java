@@ -36,13 +36,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
-	@JsonBackReference
-	private Set<Message> messages;
-	
-	//@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER) // receivers
-	//@JsonManagedReference
-	//private Set<Message> messages; // received messages
+//	@OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+//	@JsonBackReference
+//	private Set<Message> messages;
 	
 	public Integer getId() {
 		return id;
@@ -92,25 +88,13 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
-	}
-
-
-//
-//@JsonIgnore
-//	public Set<Message> getReceivedMessages() {
+//	public Set<Message> getMessages() {
 //		return messages;
 //	}
-//@JsonIgnore
-//	public void setReceivedMessages(Set<Message> messages) {
+//
+//	public void setMessages(Set<Message> messages) {
 //		this.messages = messages;
 //	}
-
 
 	public String getPhotoBase64() {
 		return Base64.encodeBase64String(photo);

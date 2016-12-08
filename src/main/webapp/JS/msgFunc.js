@@ -2,20 +2,31 @@ var urlMsg = 'http://localhost:8080/webmail/app/rest/messages/';
 
 var initMsg = function(s, h){
 	h.get(urlMsg).then(function(resp){
-//		console.log(resp);
-//		console.log(resp.data);
 		s.messages = resp.data;
 		s.m = {};
 	});
 };
 
-var addMail = function(s, h, id){
-	console.log('msg id, subject, body, sender ID = '+s.msg.id+" "+s.msg.subject+" "+s.msg.text+" "+s.msg.sender);
-	h.post(urlMsg+id, s.msg).then(function(){
+var addMail = function(s, h, r, senId, rec){	
+	h.post(urlMsg+"sendMail", s.msg).then(function(){
 		initMsg(s, h);		
 		console.log('Mail sent');
-	});
+	});	
 };
+
+var getSent = function(h, s, r){
+	if(r.isSomeoneIn == true){
+		var user = r.loggedIn;
+		var id = user.id;
+		h.get(urlMsg+id+"/sent").then(function(resp){
+			s.sentmessages = resp.data;
+		});
+	} else {
+		console.log('No one is logged in');
+	}
+
+
+}
 
 //var getAvenger = function(id, s, h, r){
 //	cancelUpdForm(r);
