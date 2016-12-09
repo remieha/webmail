@@ -21,7 +21,9 @@
 			<button class="btn btn-lg btn-primary btn-block" type="button" name="submitBtn" id="submitBtn" ng-click="login(user.mail, user.password)">Sign	in</button>
 			</div>
 		</form>
-		<h4 class="blue"><a href="#Register">New user : Please register</a></h4>
+		<h4 class="blue" ng-show="!isSomeoneIn"><a href="#Register">New user : Please register</a></h4>
+		<h4 class="blue" ng-show="isSomeoneIn" ng-click="logout()"><a href="#Home">Log out</a></h4>
+		
 
 	</div>
 	<div class="col-md-4"></div>

@@ -34,19 +34,20 @@ public class MessagesDAOImpl implements MessagesDAO {
 
 	public List<Message> findAll() {
 		String query = "select m from Message m";
-		List<Message> list = (List<Message>) entityManager.createQuery(query).getResultList();
+		List<Message> list = (List<Message>) entityManager.createQuery(query, Message.class).getResultList();
 		return list;
 	}
 
 	public List<Message> sentMessages(Integer id) {
 		String query = "select m from Message m where sender_id="+id;
-		List<Message> list = (List<Message>) entityManager.createQuery(query).getResultList();
+		List<Message> list = entityManager.createQuery(query, Message.class).getResultList();
 		return list;
 	}
 
 	public List<Message> receivedMessages(Integer id) {
-		String query = "select m from Message m where ";
-		return null;
+		String query = "select m from Message m join m.recipients r where r.id=:id";
+		List<Message> list = entityManager.createQuery(query, Message.class).setParameter("id", id).getResultList();
+		return list;
 	}
 
 }

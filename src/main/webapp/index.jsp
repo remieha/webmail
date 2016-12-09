@@ -14,8 +14,6 @@
 <script type="text/javascript" src="assets/jquery-te-1.4.0.min.js" charset="utf-8"></script>
 <script src="assets/angular.min.js"></script>
 <script src="assets/angular-sanitize.min.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -26,7 +24,8 @@
 
 <body ng-app="mailApp" ng-controller="appCtrl">
 	<div class="jumbotron">
-		<h1>WEBMAIL {{loggedIn.firstName}}</h1>
+		<h1 ng-show="isSomeoneIn">Connected to {{loggedIn.firstName}}'s webmail</h1>
+		<h1 ng-show="!isSomeoneIn">Welcome to the webmail application</h1>
 	</div>
 	<div class="container">
 		<div class="row">
@@ -44,18 +43,12 @@
 					    <div class="navbar-header">   	
 						      <a class="navbar-brand" href="#Home"><span class="glyphicon glyphicon-home"></span> Home</a>
     					</div>
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav" ng-show="isSomeoneIn">
 							<li><a href="#New"><span class="glyphicon glyphicon-pencil"></span> New Message</a></li>
 							<li><a href="#Inbox"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
 							<li><a href="#Sent"><span class="glyphicon glyphicon-share-alt"></span> Sent</a></li>
-							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">
-								<span class="glyphicon glyphicon-plus"></span> Other options <span class="glyphicon glyphicon-chevron-down"></span></a>
-        							<ul class="dropdown-menu">
-          								<li><a href="#UsersList">Users List</a></li>
-          								<li><a href="#UserProfile">Your profile</a></li>
-          								<li><a href="#">Option3</a></li>
-        							</ul>
-      						</li>
+							<li><a href="#UserProfile"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
+							<li><a href="#UsersList"><span class="glyphicon glyphicon-list-alt"></span> Users List</a></li>
 						</ul>
 					</div>
 				</nav>

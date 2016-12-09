@@ -1,3 +1,4 @@
+<div ng-show="isSomeoneIn">
 <h3>Your have <span class="badge" ng-bind="inmessages.length"></span> mails in your inbox :</h3>
 Filter by : <input type="text" ng-model="filterType">
 <table class="table table-hover">
@@ -16,12 +17,13 @@ Filter by : <input type="text" ng-model="filterType">
 			<td>{{m.sender.lastName | uppercase}} {{m.sender.firstName}}</td>
 			<td>{{m.date | date: "MM/dd/yyyy' at 'HH:mm:ss"}}</td>
 			<td>{{m.subject}}</td>
-			<td><span ng-repeat="r in m.recipients">{{r.mail}} </span></td>
+			<td><span ng-repeat="r in m.recipients">{{r.lastName | uppercase}} {{r.firstName}}<br></span></td>
 			<td>
-				<button class="btn btn-primary btn-xs" type="button" ng-click=""><span class="glyphicon glyphicon-eye-open"></span> Open</button>
-				<button class="btn btn-danger btn-xs glyphicon glyphicon-remove" type="button" ng-click=""></button>			
+				<button class="btn btn-primary btn-xs" type="button" ng-click="openMsg(m.id)"><span class="glyphicon glyphicon-eye-open"></span> Open</button>
+				<button class="btn btn-danger btn-xs" type="button" ng-click="deleteMsg(m.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button>			
 			</td>
 		</tr>
 
 	</tbody>
 </table>
+</div>

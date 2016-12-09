@@ -4,34 +4,28 @@
 	<form class="form-horizontal">
 		<h3 class="blue form-signin-heading">Write your message...</h3>
 
- 		<div class="form-group">
-			<label for="sender">Sender (later : logged-in user is sender) :</label>
-				<input type="text" name="sender" id="sender" class="form-control" ng-model="msg.sender.id">
-<!-- 				<select size="1" name="sender" id="sender">
-					<option ng-repeat="u in users" ng-model="msg.sender" value="{{u.id}}">{{u.id}} {{u.firstName}} {{u.lastName | uppercase}} ({{u.mail}})</option>
-				</select>  -->
-		</div>
-		
-<!-- 		<div class="form-group">
-			<label for="recipient">Send to : </label><br>
-				<div class="checkbox form-group">		
-  					<span ng-repeat="u in users" ng-model="msg.recipients">
-  						<input name="recipient" id="recipient"  type="checkbox" value={{u.id}} >
-  							{{u.firstName}} {{u.lastName | uppercase}} ({{u.mail}}) <br>
+ 		<div class="form-group" ng-init="msg.sender.id=loggedIn.id"></div>
+ 		
+ 	    <div class="multiselect form-group">
+        	<div class="selectBox" ng-click="showCheckboxes()">
+            	<select>
+                	<option>Send to</option>            		
+                	
+            	</select>    	
+            	<div class="overSelect"></div>
+        	</div>
+       		<div id="checkboxes">
+  					<span ng-repeat="u in users">
+  						<input name="recipient" id="recipient"  type="checkbox" ng-model="users[$index].checked" ng-checked="users[$index].checked">
+  							{{u.firstName}} {{u.lastName | uppercase}} ({{u.mail}}) 
+  							<span class="btn btn-primary btn-xs pull-right" ng-show="u==users[users.length-1]" ng-click="hideCheckboxes()">OK</span>
+  							<br>
   					</span>
-  				</div>	
-		</div> -->
-		
-		<div class="form-group">
-			<label for="recipient">Send to : </label>
-		    <div add-input>
-        		<button>Click to Add</button>
-    		</div>
-		</div>
-		
+        	</div>
+    	</div>		
 		<div class="form-group">
 			<label for="mailSubject">Subject :</label>
-				<input type="text" id="mailSubject" name="mailSubject" class="form-control"autofocus ng-model="msg.subject">
+				<input type="text" id="mailSubject" name="mailSubject" class="form-control" ng-model="msg.subject">
 		</div>
 
 		<div class="form-group">
@@ -39,7 +33,7 @@
 		</div>
 		
 		<div class="form-group">
-			<button class="btn btn-primary" type="button" id="sendMailBtn" ng-click="sendMail(msg.sender.id, msg.recipients)">Send</button>
+			<button class="btn btn-primary" type="button" id="sendMailBtn" ng-click="sendMail()">Send</button>
 			<button class="btn btn-primary" type="reset" id="resetMailBody">Clear all</button>
 			<button class="btn btn-primary" type="button" id="cancelMail" ng-click="cancelMail()">Cancel</button>
 		</div>	

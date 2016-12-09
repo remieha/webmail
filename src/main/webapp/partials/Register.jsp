@@ -5,16 +5,16 @@
 			<h3 class="blue form-signin-heading">Registration form</h3>
 
 		<div class="form-group">
-			<label for="inputLName" class="sr-only">Last Name</label>
-				<input type="text" id="inputLName" name="lastName" class="form-control" placeholder="Last Name" required autofocus ng-model="user.lastName">
+			<label for="inputFName" class="sr-only">First Name</label>
+				<input type="text" id="inputFName" name="firstName" class="form-control" placeholder="First Name" required autofocus ng-model="user.firstName">
 		</div>
 		<div class="form-group">
-			<label for="inputFName" class="sr-only">First Name</label>
-				<input type="text" id="inputFName" name="firstName" class="form-control" placeholder="First Name" required ng-model="user.firstName">
+			<label for="inputLName" class="sr-only">Last Name</label>
+				<input type="text" id="inputLName" name="lastName" class="form-control" placeholder="Last Name" required ng-model="user.lastName">
 		</div>
 		<div class="form-group">
 			<label for="inputRegisterEmail" class="sr-only">Email address</label>
-				<input type="email" id="inputRegisterEmail" name="inputRegisterEmail" name="mail" class="form-control" placeholder="Email address" required ng-change="validEmail()" ng-model="user.mail">
+				<input type="email" id="inputRegisterEmail" name="inputRegisterEmail" name="mail" class="form-control" placeholder="Email address" required ng-model="user.mail">
 		</div>
 		<div class="form-group">
 			<label for="inputRegisterPassword" class="sr-only">Password</label>

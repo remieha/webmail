@@ -18,70 +18,124 @@
     cursor: inherit;
     display: block; 
 } */
-.jumbotron { 
+.jumbotron {
 	background-color: #51C9F6;
 	background-size: cover;
-	height:150px;
-	text-color : white;
+	height: 150px;
+	text-color: white;
 	position: relative;
-    text-align:center;
+	text-align: center;
 }
-.jumbotron > h1 {
-	color:white;
-	text-align:center;
+
+.jumbotron>h1 {
+	color: white;
+	text-align: center;
 }
 /* navbar */
 .navbar-default {
-    background-color: #dff4ff;
-    border-color: #dff4ff;
+	background-color: #dff4ff;
+	border-color: #dff4ff;
 }
 /* title */
 .navbar-default .navbar-brand {
-    color: #51C9F6;
+	color: #51C9F6;
 }
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: #333;
-    font-weight: bold;
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
+	{
+	color: #333;
+	font-weight: bold;
 }
 /* link */
-.navbar-default .navbar-nav > li > a {
-    color: #51C9F6;
+.navbar-default .navbar-nav>li>a {
+	color: #51C9F6;
 }
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #333;
-    font-weight: bold;
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+	{
+	color: #333;
+	font-weight: bold;
 }
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
-.navbar-default .navbar-nav > .active > a:focus {
-    color: #555;
-    background-color: #dff4ff;
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
+	.navbar-default .navbar-nav>.active>a:focus {
+	color: #555;
+	background-color: #dff4ff;
 }
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
-.navbar-default .navbar-nav > .open > a:focus {
-    color: #555;
-    background-color: #dff4ff;
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+	.navbar-default .navbar-nav>.open>a:focus {
+	color: #555;
+	background-color: #dff4ff;
 }
 /* caret */
-.navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: #777;
-    border-bottom-color: #777;
+.navbar-default .navbar-nav>.dropdown>a .caret {
+	border-top-color: #777;
+	border-bottom-color: #777;
 }
-.navbar-default .navbar-nav > .dropdown > a:hover .caret,
-.navbar-default .navbar-nav > .dropdown > a:focus .caret {
-    border-top-color: #333;
-    border-bottom-color: #333;
+
+.navbar-default .navbar-nav>.dropdown>a:hover .caret, .navbar-default .navbar-nav>.dropdown>a:focus .caret
+	{
+	border-top-color: #333;
+	border-bottom-color: #333;
 }
-.navbar-default .navbar-nav > .open > a .caret, 
-.navbar-default .navbar-nav > .open > a:hover .caret, 
-.navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #555;
-    border-bottom-color: #555;
+
+.navbar-default .navbar-nav>.open>a .caret, .navbar-default .navbar-nav>.open>a:hover .caret,
+	.navbar-default .navbar-nav>.open>a:focus .caret {
+	border-top-color: #555;
+	border-bottom-color: #555;
 }
+
 .blue {
-	color : #337ab7;
+	color: #337ab7;
 	/* font-weight : bold; */
+}
+
+.multiselect {
+	display: block;
+    width: auto;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.selectBox {
+	position: relative;
+}
+
+.selectBox select {
+	width: 100%;
+	font-weight: bold;
+    border: 0px #ffffff;
+}
+
+.overSelect {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+#checkboxes {
+	position: relative;
+	display: none;
+ 	width: auto;
+    color: #555;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+#checkboxes label {
+	display: block;
+}
+
+#checkboxes label:hover {
+	background-color: #dff4ff;
 }

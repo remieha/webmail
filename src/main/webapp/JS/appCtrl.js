@@ -25,8 +25,13 @@ app.config(function($routeProvider) {
     })
     .when("/UserProfile", {
     	templateUrl : "partials/UserProfile.jsp"
+    })
+    .when("/showMessage", {
+    	templateUrl : "partials/showMessage.jsp"
+    })
+    .otherwise({
+    	templateUrl : "partials/Home.jsp"
     });
-    
 });
 
 app.directive('myCurrentTime', ['$interval', 'dateFilter',
@@ -57,41 +62,49 @@ app.directive('myCurrentTime', ['$interval', 'dateFilter',
     }
 }]);
 
-//Temporary way to add recipients. 
-app.directive('addInput', ['$compile', function ($compile) {
-	return {
-		restrict: 'A',
-        link: function (scope, element, attrs) {
-            element.find('button').bind('click', function () {
-                var input = angular.element('<div><input type="text" ng-model="msg.recipients[' + scope.inputCounter + '].id"></div>');
-                var compile = $compile(input)(scope);
-                element.append(input);
-                scope.inputCounter++;
-            });
-        }
-    }
-}]);
+////Temporary way to add recipients. 
+//app.directive('addInput', ['$compile', function ($compile) {
+//	return {
+//		restrict: 'A',
+//        link: function (scope, element, attrs) {
+//            element.find('button').bind('click', function () {
+//                var input = angular.element('<div><input type="text" ng-model="msg.recipients[' + scope.inputCounter + '].id" ng-bind="recipientIfReply"></div>');
+//                var compile = $compile(input)(scope);
+//                element.append(input);
+//                scope.inputCounter++;
+//            });
+//        }
+//    }
+//}]);
 
 var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window) {
 	$scope.user = {};
 	$rootScope.loggedIn = {};
 	$scope.msg = {};
 	$scope.date = new Date($.now());
-	$rootScope.loggedin = {};
 	$scope.msg.recipients = [];
 	$scope.inputCounter = 0;
 	$scope.sender = {};
 	$scope.recipients = {};
 	$rootScope.isSomeoneIn = false;
-	
+	$scope.filterType = [];
+	$scope.recipientIfReply = {};
+	// add new initialisations in logout()
+		
 	initUser($scope, $http);
 	initMsg($scope, $http);
 
 	getSent($http, $scope, $rootScope);
+	getInbox($http, $scope, $rootScope);
 	
 	// Login
 	$scope.login = function(mail, pass){
 		authenticate($scope, $http, $rootScope, $window, mail, pass);
+	}
+	
+	// Logout
+	$scope.logout = function(){
+		logout($scope, $http, $rootScope);
 	}
 	
 	// Add new user
@@ -110,107 +123,55 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 	//Check email validity for new user
 	$scope.validEmail = function(){
 		console.log('write here checking email validity function...');
-		console.log($("#inputRegisterEmail").val());
 		var email = $("#inputRegisterEmail");
 		var emailExists = false;
 		if(email.val().trim()!='' && emailExists==false){
-			console.log('email is valid');
+			//console.log('email is valid');
 		} else {
-			console.log('email is invalid, try another value');
+			//console.log('email is invalid, try another value');
 		}
 		//checkVal($scope, $http);
 	}
 	
 	// Writing mail
-	$scope.sendMail = function(senderId, recipients){
-		addMail($scope, $http, $rootScope, senderId, recipients);
-		$window.location.href = '#Inbox';
+	$scope.sendMail = function(){
+		$scope.msg.recipients = filterRecipients($scope.users);
+		addMail($scope, $http, $rootScope);
+		$window.location.href = '#Sent';
 	}
 	$scope.cancelMail = function(){
 		$window.location.href = '#Inbox';
 	}
 	
-//	$rootScope.showavenger = false;
-//	$rootScope.showagent = false;
-//	$rootScope.affavupd=false;
-//	$rootScope.affagupd=false;
-//	
-//	// Appeler la liste des avengers
-//	init_av($scope, $http);
-//	
-//	// Appeler la liste des agents
-//	init_ag($scope, $http);
-//	
-//	// Supprimer un avenger
-//	$scope.delFunc_av = function(id){
-//		remove_av(id, $http, $scope);
-//	}
-//	
-//	// Supprimer un agent
-//	$scope.delFunc_ag = function(id){
-//		remove_ag(id, $http, $scope);
-//	}
-//	
-//	// Show one avenger card
-//	$scope.show_av = function(id){
-//		getAvenger(id, $scope, $http, $rootScope);
-//	}
-//	
-//	// Hide the card
-//	$scope.hideCard = function(){
-//		$rootScope.showavenger = false;
-//	}
-//	
-//	// Show one agent card
-//	$scope.show_ag = function(id){
-//		getAgent(id, $scope, $http, $rootScope);		
-//	}
-//	
-//	// Hide the card
-//	$scope.hideAgCard = function(){
-//		$rootScope.showagent = false;
-//	}
-//	
-
-//	// Add an avenger
-//	$scope.addForm_av = function(){
-//		add_av($scope, $http, $rootScope);	
-//	}
-//	
-//	// Add an agent
-//	$scope.addForm_ag = function(){
-//		add_ag($scope, $http);
-//	}
-//	
-//	// Update an avenger
-//		// Open Form
-//	$scope.show_form_av = function(id){
-//		$rootScope.affForm = false;
-//		editAvenger(id, $scope, $http, $rootScope);
-//	}   // Validate
-//	$scope.updForm_av = function(id){
-//		upd_av(id, $scope, $http);
-//	}   // Cancel form
-//	$scope.cancelForm = function(){
-//		$rootScope.affavupd=false;
-//	}
-//	
-//	// Update an agent
-//		// Open Form
-//	$scope.show_form_ag = function(id){
-//		editAgent(id, $scope, $http, $rootScope);
-//	} 	// Validate
-//	$scope.updForm_ag = function(id){
-//		upd_ag(id, $scope, $http);
-//	}   // Cancel form
-//	$scope.cancelFormAg = function(){
-//		$rootScope.affagupd=false;
-//	}
-//	
-//	// Add avenger photo
-//	$scope.uploadPhotoAv = function(){
-//		addAvPhoto($scope, $http);
-//	}
+	$scope.openMsg = function(id){
+		viewMsg($http, $scope, id);
+		$window.location.href = '#showMessage';
+	}
+	$scope.deleteMsg = function(id){
+		removeMsg($http, $scope, $rootScope, id);
+	}
+	
+	$scope.reply = function(id){
+		$window.location.href = "#New";
+//		$scope.recipientIfReply = id;
+		console.log('reply clicked');
+	}
+	
+	var expanded = false;
+    $scope.showCheckboxes = function() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+    $scope.hideCheckboxes = function() {
+        var checkboxes = document.getElementById("checkboxes");
+        checkboxes.style.display = "none";
+    }
 	
 });
 

@@ -30,11 +30,28 @@ var	authenticate = function(s, h, r, w, m, p){
 		} else {
 			r.loggedIn = resp.data;
 			r.isSomeoneIn = true;
+			console.log(r.loggedIn.firstName+' is logged in');
 			getSent(h, s, r);
-			//console.log(r.loggedIn);
-			w.location.href = '#Sent';
+			getInbox(h, s, r);
+			w.location.href = '#Inbox';
 		}
 	});
+};
+
+var logout = function(s, h, r){
+	r.loggedIn = {};
+	r.isSomeoneIn = false;
+	s.user = {};
+	s.msg = {};
+	s.msg.recipients = [];
+	s.inputCounter = 0;
+	s.sender = {};
+	s.recipients = {};
+	s.inmessages = {};
+	s.sentmessages = {};
+	s.filterType = [];
+	s.recipientIfReply = {};
+
 };
 
 
