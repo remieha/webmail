@@ -6,6 +6,12 @@ var initUser = function(s, h){
 	});
 };
 
+var getUser = function(s, h, id){
+	h.get(urlUser+id).then(function(resp){
+		s.replyto = resp.data;
+	});
+};
+
 var addForm = function(s, h){
 	h.post(urlUser, s.user).then(function(){
 		initUser(s, h);		
@@ -50,8 +56,7 @@ var logout = function(s, h, r){
 	s.inmessages = {};
 	s.sentmessages = {};
 	s.filterType = [];
-	s.recipientIfReply = {};
-
+	s.recipientReplyId = {};
 };
 
 

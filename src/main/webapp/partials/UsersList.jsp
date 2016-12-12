@@ -22,7 +22,7 @@ Filter by : <input type="text" ng-model="filterType">
 			<td>{{u.lastName | uppercase}}</td>
 			<td>{{u.mail}}</td>
 			<td>
-				<button class="btn btn-warning btn-xs" type="button" ng-click=""><span class="glyphicon glyphicon-pencil"></span> Write mail</button>
+				<button class="btn btn-warning btn-xs" type="button" ng-click="replyMail(u.id)"><span class="glyphicon glyphicon-pencil"></span> Write mail</button>
 				<button class="btn btn-warning btn-xs" type="button" ng-click=""><span class="glyphicon glyphicon-comment"></span> Write chat</button>			
 			</td>
 		</tr>

@@ -4,8 +4,14 @@ Filter by : <input type="text" ng-model="filterType">
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>From<span class="glyphicon glyphicon-sort-by-alphabet" type="button" ng-click="clickOrder ='sender'"></span></th>
-			<th>Date<span class="glyphicon glyphicon-sort-by-order" type="button" ng-click="clickOrder ='date'"></span></th>
+			<th>From&nbsp;
+				<span class="glyphicon glyphicon-sort-by-alphabet" type="button" ng-click="clickOrder ='sender.lastName'"></span>
+				<span class="glyphicon glyphicon-sort-by-alphabet-alt" type="button" ng-click="clickOrder ='-sender.lastName'"></span>
+			</th>
+			<th>Date&nbsp;
+				<span class="glyphicon glyphicon-sort-by-order" type="button" ng-click="clickOrder ='date'"></span>
+				<span class="glyphicon glyphicon-sort-by-order-alt" type="button" ng-click="clickOrder ='-date'"></span>
+			</th>
 			<th>Subject</th>
 			<th>To</th>
 			<th></th>

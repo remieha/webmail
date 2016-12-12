@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h4><b>{{showmsg.subject}}</b></h4>
-		<button class="btn btn-primary btn-xs pull-right" type="button" ng-click="reply(showmsg.sender.id)">Reply</button>
+		<button class="btn btn-primary btn-xs pull-right" type="button" ng-click="replyMail(showmsg.sender.id)">Reply</button>
 		<h5><b>From : </b><i>{{showmsg.sender.firstName}} {{showmsg.sender.lastName | uppercase}} ({{showmsg.sender.mail}})</i></h5>
 		<h6>{{showmsg.date | date: "MM/dd/yyyy' at 'HH:mm:ss"}}</h6>
 	</div>

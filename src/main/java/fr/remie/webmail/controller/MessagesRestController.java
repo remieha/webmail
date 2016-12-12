@@ -12,6 +12,8 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -40,23 +42,43 @@ public class MessagesRestController {
 	private EntityManager em;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Message> listMessages() {
-		return messagesService.findAll();
+	public ResponseEntity<List<Message>> listMessages() { // A ecrire partout ou on retourne 
+		List<Message> list = messagesService.findAll();
+		if(list == null){
+			return new ResponseEntity<List<Message>>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value="/{id}/sent", method = RequestMethod.GET)
-	public List<Message> listMessages(@PathVariable Integer id) {
-		return messagesService.sentMessages(id);
+	public ResponseEntity<List<Message>> listMessages(@PathVariable Integer id) {
+		List<Message> list = messagesService.sentMessages(id);
+		if(list == null){
+			return new ResponseEntity<List<Message>>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value="/{id}/inbox", method = RequestMethod.GET)
-	public List<Message> listInMessages(@PathVariable Integer id) {
-		return messagesService.receivedMessages(id);
+	public ResponseEntity<List<Message>> listInMessages(@PathVariable Integer id) {
+		List<Message> list = messagesService.receivedMessages(id);
+		if(list == null){
+			return new ResponseEntity<List<Message>>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<List<Message>>(list, HttpStatus.OK);
+		}		
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Message retrieveMessage(@PathVariable Integer id) {
-		return messagesService.getMessage(id);
+	public ResponseEntity<Message> retrieveMessage(@PathVariable Integer id) {
+		Message message = messagesService.getMessage(id);
+		if(message == null){
+			return new ResponseEntity<Message>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<Message>(message, HttpStatus.OK);
+		}			
 	}
 
 	@RequestMapping(value = "/sendMail", method = RequestMethod.POST)

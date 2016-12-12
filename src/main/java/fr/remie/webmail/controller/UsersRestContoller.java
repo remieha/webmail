@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import fr.remie.webmail.model.Message;
 import fr.remie.webmail.model.User;
 import fr.remie.webmail.service.UsersService;
 
@@ -30,14 +33,24 @@ public class UsersRestContoller {
     private EntityManager em;
     
 	@RequestMapping(method = RequestMethod.GET)
-	public List<User> listUsers() {
-		return usersService.findAll();
+	public ResponseEntity<List<User>> listUsers() {
+		List<User> list = usersService.findAll();
+		if(list == null){
+			return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+		}
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User retrieveUser(@PathVariable Integer id) {
-		return usersService.getUser(id);
-	}
+    public ResponseEntity<User> retrieveUser(@PathVariable Integer id) {
+    	User user = usersService.getUser(id);
+        if (user == null){
+            return new ResponseEntity<User> (HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<User> (user, HttpStatus.OK);
+        }
+    }
 
 	@RequestMapping(method = RequestMethod.POST)
 	public void createUser(@RequestBody User u) {
@@ -60,19 +73,4 @@ public class UsersRestContoller {
 		User user = usersService.login(u.getMail(), u.getPassword());
 		return user;
 	}
-	
-//	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
-//	public User uploadPhoto(MultipartFile file){
-//		try {
-//			byte[] bytes = file.getBytes();
-//			User user = new User();
-//			user.setPhoto(bytes);
-//		    return user;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		//return "redirect:/app/avenger/";
-//		return null;
-//	}
-
 }

@@ -53,6 +53,26 @@ var removeMsg = function(h, s, r, id){
 	});
 }
 
+//var filterRecipients = function(s, h) {
+//	var list = s.users;
+//	var filtered = [];
+////	console.log(s.recipientReplyId);
+////	if(angular.equals({}, s.recipientReplyId)){ // It's a new message
+////		console.log('recipient reply ID is empty');
+//		list.forEach(function(item){
+//			if(item.checked) {
+//				filtered.push(item);
+//			}
+//		});
+////	} else { // It's a reply or a mail written from the user's list
+////		console.log('recipient reply ID is '+s.recipientReplyId);
+////		getUser(s, h, s.recipientReplyId);
+////		console.log(s.replyto);
+////		filtered.push(s.replyto);
+////	}
+//	return filtered;
+//}
+
 var filterRecipients = function(list) {
 	var filtered = [];
 	list.forEach(function(item){

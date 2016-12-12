@@ -88,8 +88,8 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 	$scope.recipients = {};
 	$rootScope.isSomeoneIn = false;
 	$scope.filterType = [];
-	$scope.recipientIfReply = {};
-	// add new initialisations in logout()
+	$scope.recipientReplyId = {};
+	// add new initializations in logout()
 		
 	initUser($scope, $http);
 	initMsg($scope, $http);
@@ -137,12 +137,13 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 	$scope.sendMail = function(){
 		$scope.msg.recipients = filterRecipients($scope.users);
 		addMail($scope, $http, $rootScope);
+		$scope.recipientReplyId = {};
 		$window.location.href = '#Sent';
 	}
 	$scope.cancelMail = function(){
 		$window.location.href = '#Inbox';
 	}
-	
+
 	$scope.openMsg = function(id){
 		viewMsg($http, $scope, id);
 		$window.location.href = '#showMessage';
@@ -151,9 +152,9 @@ var ctrl = app.controller("appCtrl", function($scope, $http, $rootScope, $window
 		removeMsg($http, $scope, $rootScope, id);
 	}
 	
-	$scope.reply = function(id){
-		$window.location.href = "#New";
-//		$scope.recipientIfReply = id;
+	$scope.replyMail = function(id){
+		$scope.recipientReplyId = id;
+		$window.location.href = '#New';
 		console.log('reply clicked');
 	}
 	

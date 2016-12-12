@@ -5,7 +5,10 @@ Filter by : <input type="text" ng-model="filterType">
 	<thead>
 		<tr>
 			<th>To</th>
-			<th>Date<span class="glyphicon glyphicon-sort-by-order" type="button" ng-click="clickOrder ='date'"></span></th>
+			<th>Date&nbsp;
+				<span class="glyphicon glyphicon-sort-by-order" type="button" ng-click="clickOrder ='date'"></span>
+				<span class="glyphicon glyphicon-sort-by-order-alt" type="button" ng-click="clickOrder ='-date'"></span>
+			</th>
 			<th>Subject</th>
 			<th></th>
 		</tr>

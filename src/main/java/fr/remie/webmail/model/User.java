@@ -1,22 +1,13 @@
 package fr.remie.webmail.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Base64;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "users")
@@ -36,10 +27,6 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-//	@OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
-//	@JsonBackReference
-//	private Set<Message> messages;
-	
 	public Integer getId() {
 		return id;
 	}
@@ -87,14 +74,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-//	public Set<Message> getMessages() {
-//		return messages;
-//	}
-//
-//	public void setMessages(Set<Message> messages) {
-//		this.messages = messages;
-//	}
 
 	public String getPhotoBase64() {
 		return Base64.encodeBase64String(photo);

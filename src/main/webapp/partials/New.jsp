@@ -16,8 +16,11 @@
         	</div>
        		<div id="checkboxes">
   					<span ng-repeat="u in users">
-  						<input name="recipient" id="recipient"  type="checkbox" ng-model="users[$index].checked" ng-checked="users[$index].checked">
+  						<input name="recipient" id="recipient"  type="checkbox" 
+  						ng-model="users[$index].checked"
+  						ng-init="users[$index].checked=(recipientReplyId == users[$index].id)">
   							{{u.firstName}} {{u.lastName | uppercase}} ({{u.mail}}) 
+  							<span ng-show="u==users[users.length-1]"><br></span>
   							<span class="btn btn-primary btn-xs pull-right" ng-show="u==users[users.length-1]" ng-click="hideCheckboxes()">OK</span>
   							<br>
   					</span>
